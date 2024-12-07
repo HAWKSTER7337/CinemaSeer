@@ -1,0 +1,10 @@
+{
+  "version": 2,
+  "dgSpecHash": "Cbbvb8kznVs=",
+  "success": true,
+  "projectFilePath": "C:\\Users\\AHAWK\\Documents\\code\\CinemaSeer\\CinemaSeer\\CinemaSeer.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\AHAWK\\.nuget\\packages\\restsharp\\112.1.0\\restsharp.112.1.0.nupkg.sha512"
+  ],
+  "logs": []
+}
