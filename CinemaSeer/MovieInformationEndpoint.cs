@@ -12,7 +12,7 @@ public class MovieInformationEndpoint
         var client = new RestClient(options);
         var request = new RestRequest("");
         request.AddHeader("accept", "application/json");
-        request.AddHeader("Authorization", "Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI4ZmE4ZDI2YjU0M2UxNGUzNWVjNDM3NWEyYjc2OWJlZiIsIm5iZiI6MTczMzYwODc0My44MDgsInN1YiI6IjY3NTRjNTI3ZmRiYTkzOGU4NjM2NTY0OCIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.gfuNbZFAY6BUFUoGyaK7bCMnADNMlkWfZ43EJkmTDv4");
+        request.AddHeader("Authorization", "Bearer None");
         var response = await client.GetAsync(request);
         
         Console.WriteLine("{0}", response.Content);
