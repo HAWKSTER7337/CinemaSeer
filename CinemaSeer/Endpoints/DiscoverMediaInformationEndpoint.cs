@@ -1,6 +1,4 @@
-﻿using System.Text.Json;
-using CinemaSeer.JsonFormats;
-using RestSharp;
+﻿using RestSharp;
 
 namespace CinemaSeer.Endpoints;
 
@@ -13,12 +11,14 @@ namespace CinemaSeer.Endpoints;
 /// based on certain criteria. The endpoint URL is constructed with optional parameters
 /// and includes necessary headers for authorization.
 /// </remarks>
-public class DiscoverMovieInformationEndpoint : MovieEndpoint
+public class DiscoverMediaInformationEndpoint : MediaEndpoint
 {
     private const string EndPointString = "https://api.themoviedb.org/3/discover/movie";
 
-    public DiscoverMovieInformationEndpoint() : base(EndPointString)
-    {}
+    public DiscoverMediaInformationEndpoint() : base(EndPointString)
+    {
+        Parameters = null;
+    }
 
     public override async Task<TMovieResponse> GetInformation<TMovieResponse>()
     {

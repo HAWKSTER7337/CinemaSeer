@@ -2,17 +2,22 @@
 
 namespace CinemaSeer.JsonFormats;
 
-public class MovieResponse
+public class MediaResponse
 {
     [JsonPropertyName("page")]
     public int Page {get; set;}
     
     [JsonPropertyName("results")]
-    public List<Movie> Results {get; set;}
+    public List<IMedia> Results {get; set;}
     
     [JsonPropertyName("total_pages")]
     public int totalPages {get; set;}
     
     [JsonPropertyName("total_results")]
     public int totalResults { get; set; }
+
+    public void MergeAnotherMediaResponseIntoThisOne(MediaResponse otherMediaResponse)
+    {
+        Results.AddRange(otherMediaResponse.Results);
+    }
 }

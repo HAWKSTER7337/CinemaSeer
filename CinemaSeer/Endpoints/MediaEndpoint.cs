@@ -12,7 +12,7 @@ namespace CinemaSeer.Endpoints;
 /// It manages the construction of the full request URL using a base endpoint URL and optional parameters.
 /// The class also handles sending HTTP requests and processing the responses.
 /// </remarks>
-public abstract class MovieEndpoint
+public abstract class MediaEndpoint
 {
     protected readonly string ApiAuthorizationKey = GetApiAuthorizationKey();
     
@@ -21,7 +21,7 @@ public abstract class MovieEndpoint
     protected string? Parameters;
     protected string FullRequestUrl => Parameters != null ? $"{_baseEndpointUrl}?{Parameters}" : _baseEndpointUrl;
 
-    protected MovieEndpoint(string baseEndpointUrl)
+    protected MediaEndpoint(string baseEndpointUrl)
     {
         _baseEndpointUrl = baseEndpointUrl;
     }
@@ -35,7 +35,7 @@ public abstract class MovieEndpoint
         }
         catch (Exception ex)
         {
-            throw new Exception("An error occurred while fetching the movie information", ex);
+            throw new Exception("An error occured while fetching media", ex);
         }
     }
 
