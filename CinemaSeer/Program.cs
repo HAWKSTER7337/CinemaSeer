@@ -7,9 +7,20 @@ public class Program
 {
     public static async Task Main(string[] args)
     {
-        var movieInformation = new DiscoverMovieInformationEndpoint();
-        var response = await movieInformation.GetInformation<MovieResponse>();
-        var mediaItems = response.Results.Select(movie => movie.GetInfo()).ToList();
-        mediaItems.ForEach(mediaItem => Console.WriteLine(mediaItem));
+        // Getting all discover Movies
+        var movieInformation = new DiscoverMediaInformationEndpoint();
+        var response = await movieInformation.GetInformation();
+
+        // Getting all discover TV Shows
+        var tvShowInformation = new DiscoverTvShowInformationEndpoint();
+        var response2 = await tvShowInformation.GetInformation();
+        
+        // Merging lists
+        var fullList = new List<IMedia>();
+        fullList.AddRange(response.Results);
+        fullList.AddRange(response2.Results);
+        
+        // Displaying
+        fullList.ForEach(peiceOfMedia => Console.WriteLine(peiceOfMedia.ToBasicDataString()));
     }
 }

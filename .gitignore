@@ -1,0 +1,51 @@
+# .NET Core specific
+bin/
+obj/
+out/
+*.dll
+*.exe
+*.log
+*.user
+*.vspscc
+*.vssscc
+*.suo
+*.nupkg
+*.snk
+*.pdb
+
+# Rider specific
+.idea/
+*.sln.iml
+
+# Visual Studio specific
+.vs/
+.vscode/
+*.csproj.user
+*.csproj.DotSettings
+*.dbmdl
+*.jfm
+*.pfx
+*.publishsettings
+
+# Resharper specific
+_ReSharper*/
+*.DotSettings.user
+
+# TeamCity
+_TeamCity*
+
+# DotCover
+*.dotCover
+
+# NuGet Packages
+packages/
+*.NuGet.targets
+
+# Publish Web Output
+wwwroot/
+
+# Containers
+**/[Dd]ocker*
+
+# App settings
+appsettings.*.json

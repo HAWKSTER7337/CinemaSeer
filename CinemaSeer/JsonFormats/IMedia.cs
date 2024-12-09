@@ -3,4 +3,6 @@
 public interface IMedia
 {
     public MediaItem GetInfo();
+
+    public string ToBasicDataString();
 }
