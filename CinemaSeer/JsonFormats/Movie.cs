@@ -56,4 +56,10 @@ public class Movie : IMedia
         mediaItem.OverView = Overview;
         return mediaItem;
     }
+
+    public string ToBasicDataString()
+    {
+        var mediaItem = GetInfo();
+        return mediaItem.ToString();
+    }
 }

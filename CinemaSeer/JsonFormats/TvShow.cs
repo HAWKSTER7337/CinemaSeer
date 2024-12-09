@@ -20,7 +20,7 @@ public class TvShow : IMedia
     public string Name { get; set; }
     
     [JsonPropertyName("origin_country")]
-    public string OriginCountry { get; set; }
+    public List<string> OriginCountry { get; set; }
     
     [JsonPropertyName("original_language")]
     public string OriginalLanguage { get; set; }
@@ -32,13 +32,13 @@ public class TvShow : IMedia
     public string Overview { get; set; }
     
     [JsonPropertyName("popularity")]
-    public int Popularity { get; set; }
+    public double Popularity { get; set; }
     
     [JsonPropertyName("poster_path")]
     public string PosterPath { get; set; }
     
     [JsonPropertyName("vote_average")]
-    public int VoteAverage { get; set; }
+    public double VoteAverage { get; set; }
     
     [JsonPropertyName("vote_count")]
     public int VoteCount { get; set; }
@@ -51,5 +51,11 @@ public class TvShow : IMedia
         mediaItem.OverView = Overview;
         mediaItem.ReleaseDate = firstAirDate;
         return mediaItem;
+    }
+
+    public string ToBasicDataString()
+    {
+        var mediaItem = GetInfo();
+        return mediaItem.ToString();
     }
 }
