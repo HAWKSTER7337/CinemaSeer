@@ -54,6 +54,7 @@ public class Movie : IMedia
         mediaItem.GenreIds = GenreIds;
         mediaItem.ReleaseDate = ReleaseDate;
         mediaItem.OverView = Overview;
+        mediaItem.PosterFileLocation = PosterPath;
         return mediaItem;
     }
 

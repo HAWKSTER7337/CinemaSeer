@@ -50,6 +50,7 @@ public class TvShow : IMedia
         mediaItem.GenreIds = genreIds;
         mediaItem.OverView = Overview;
         mediaItem.ReleaseDate = firstAirDate;
+        mediaItem.PosterFileLocation = PosterPath;
         return mediaItem;
     }
 
