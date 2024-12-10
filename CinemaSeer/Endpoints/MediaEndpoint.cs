@@ -10,24 +10,25 @@ namespace CinemaSeer.Endpoints;
 /// <remarks>
 /// This class provides the foundational functionality for constructing and sending HTTP requests to
 /// media endpoints. It includes mechanisms for setting up the base URL, handling request parameters,
-/// and processing API responses. Derived classes must implement the <see cref="GetInformation{TResultType}"/>
+/// and processing API responses. Derived classes must implement the <see cref="GetInformationAsync"/>
 /// method to retrieve specific media information based on their context.
 /// </remarks>
 public abstract class MediaEndpoint<TMedia> where TMedia : class, IMedia
 {
-    protected readonly string ApiAuthorizationKey = GetApiAuthorizationKey();
+    private readonly string _apiAuthorizationKey = GetApiAuthorizationKey();
     
     private readonly string _baseEndpointUrl;
 
     protected string? Parameters;
-    protected string FullRequestUrl => Parameters != null ? $"{_baseEndpointUrl}?{Parameters}" : _baseEndpointUrl;
+    
+    private string FullRequestUrl => Parameters != null ? $"{_baseEndpointUrl}?{Parameters}" : _baseEndpointUrl;
 
     protected MediaEndpoint(string baseEndpointUrl)
     {
         _baseEndpointUrl = baseEndpointUrl;
     }
-    
-    protected async Task<TResultType> SendRequest<TResultType>(RestClient client, RestRequest request)
+
+    private static async Task<TResultType> SendRequest<TResultType>(RestClient client, RestRequest request)
     {
         try
         {
@@ -40,7 +41,7 @@ public abstract class MediaEndpoint<TMedia> where TMedia : class, IMedia
         }
     }
 
-    private TResultType ProcessResponse<TResultType>(RestResponse response)
+    private static TResultType ProcessResponse<TResultType>(RestResponse response)
     {
         try
         {
@@ -60,5 +61,16 @@ public abstract class MediaEndpoint<TMedia> where TMedia : class, IMedia
         return apiKey ?? throw new NullReferenceException("API key was not found in environment variables");
     }
     
-    public abstract Task<MediaResponse<TMedia>> GetInformation();
+    public async Task<MediaResponse<TMedia>> GetInformationAsync()
+    {
+        var options = new RestClientOptions(FullRequestUrl);
+        var client = new RestClient(options);
+        var request = new RestRequest("");
+        
+        request.AddHeader("accept", "application/json");
+        request.AddHeader("Authorization", _apiAuthorizationKey);
+        
+        var response = await SendRequest<MediaResponse<TMedia>>(client, request);
+        return response;
+    }
 }
