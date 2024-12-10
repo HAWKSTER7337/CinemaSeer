@@ -28,7 +28,7 @@ public abstract class MediaEndpoint<TMedia> where TMedia : class, IMedia
         _baseEndpointUrl = baseEndpointUrl;
     }
 
-    private async Task<TResultType> SendRequest<TResultType>(RestClient client, RestRequest request)
+    private static async Task<TResultType> SendRequest<TResultType>(RestClient client, RestRequest request)
     {
         try
         {
@@ -41,7 +41,7 @@ public abstract class MediaEndpoint<TMedia> where TMedia : class, IMedia
         }
     }
 
-    private TResultType ProcessResponse<TResultType>(RestResponse response)
+    private static TResultType ProcessResponse<TResultType>(RestResponse response)
     {
         try
         {
