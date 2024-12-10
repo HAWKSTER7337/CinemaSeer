@@ -10,7 +10,7 @@ namespace CinemaSeer.Endpoints;
 /// <remarks>
 /// This class provides the foundational functionality for constructing and sending HTTP requests to
 /// media endpoints. It includes mechanisms for setting up the base URL, handling request parameters,
-/// and processing API responses. Derived classes must implement the <see cref="GetInformation{TResultType}"/>
+/// and processing API responses. Derived classes must implement the <see cref="GetInformationAsync"/>
 /// method to retrieve specific media information based on their context.
 /// </remarks>
 public abstract class MediaEndpoint<TMedia> where TMedia : class, IMedia
@@ -20,11 +20,14 @@ public abstract class MediaEndpoint<TMedia> where TMedia : class, IMedia
     private readonly string _baseEndpointUrl;
 
     protected string? Parameters;
+    
+    private Type MediaType;
     protected string FullRequestUrl => Parameters != null ? $"{_baseEndpointUrl}?{Parameters}" : _baseEndpointUrl;
 
     protected MediaEndpoint(string baseEndpointUrl)
     {
         _baseEndpointUrl = baseEndpointUrl;
+        MediaType = typeof(TMedia);
     }
     
     protected async Task<TResultType> SendRequest<TResultType>(RestClient client, RestRequest request)
@@ -60,5 +63,16 @@ public abstract class MediaEndpoint<TMedia> where TMedia : class, IMedia
         return apiKey ?? throw new NullReferenceException("API key was not found in environment variables");
     }
     
-    public abstract Task<MediaResponse<TMedia>> GetInformation();
+    public async Task<MediaResponse<TMedia>> GetInformationAsync()
+    {
+        var options = new RestClientOptions(FullRequestUrl);
+        var client = new RestClient(options);
+        var request = new RestRequest("");
+        
+        request.AddHeader("accept", "application/json");
+        request.AddHeader("Authorization", ApiAuthorizationKey);
+        
+        var response = await SendRequest<MediaResponse<TMedia>>(client, request);
+        return response;
+    }
 }

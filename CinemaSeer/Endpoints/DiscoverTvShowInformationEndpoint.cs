@@ -13,20 +13,9 @@ namespace CinemaSeer.Endpoints;
 public class DiscoverTvShowInformationEndpoint : MediaEndpoint<TvShow>
 {
     private const string EndpointString = "https://api.themoviedb.org/3/discover/tv";
-        
-    public DiscoverTvShowInformationEndpoint() : base(EndpointString)
-    {}
 
-    public override async Task<MediaResponse<TvShow>> GetInformation()
+    public DiscoverTvShowInformationEndpoint() : base(EndpointString)
     {
-        var options = new RestClientOptions(EndpointString);
-        var client = new RestClient(options);
-        var request = new RestRequest("");
-        
-        request.AddHeader("accept", "application/json");
-        request.AddHeader("Authorization", ApiAuthorizationKey);
-        
-        var response = await SendRequest<MediaResponse<TvShow>>(client, request);
-        return response;
+        Parameters = null;
     }
 }
