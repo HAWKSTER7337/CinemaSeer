@@ -15,7 +15,7 @@ namespace CinemaSeer.Endpoints;
 /// </remarks>
 public abstract class MediaEndpoint<TMedia> where TMedia : class, IMedia
 {
-    private readonly string ApiAuthorizationKey = GetApiAuthorizationKey();
+    private readonly string _apiAuthorizationKey = GetApiAuthorizationKey();
     
     private readonly string _baseEndpointUrl;
 
@@ -68,7 +68,7 @@ public abstract class MediaEndpoint<TMedia> where TMedia : class, IMedia
         var request = new RestRequest("");
         
         request.AddHeader("accept", "application/json");
-        request.AddHeader("Authorization", ApiAuthorizationKey);
+        request.AddHeader("Authorization", _apiAuthorizationKey);
         
         var response = await SendRequest<MediaResponse<TMedia>>(client, request);
         return response;
