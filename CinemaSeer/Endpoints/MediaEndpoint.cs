@@ -21,13 +21,11 @@ public abstract class MediaEndpoint<TMedia> where TMedia : class, IMedia
 
     protected string? Parameters;
     
-    private Type MediaType;
     protected string FullRequestUrl => Parameters != null ? $"{_baseEndpointUrl}?{Parameters}" : _baseEndpointUrl;
 
     protected MediaEndpoint(string baseEndpointUrl)
     {
         _baseEndpointUrl = baseEndpointUrl;
-        MediaType = typeof(TMedia);
     }
     
     protected async Task<TResultType> SendRequest<TResultType>(RestClient client, RestRequest request)
