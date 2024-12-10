@@ -11,11 +11,9 @@ namespace CinemaSeer.Endpoints;
 /// based on certain criteria. The endpoint URL is constructed with optional parameters
 /// and includes necessary headers for authorization.
 /// </remarks>
-public class DiscoverMoviesInformationEndpoint : MediaEndpoint<Movie>
+public class DiscoverMoviesInformationEndpoint : VideoEndpoint<Movie>
 {
-    private const string EndPointString = "https://api.themoviedb.org/3/discover/movie";
-
-    public DiscoverMoviesInformationEndpoint() : base(EndPointString)
+    public DiscoverMoviesInformationEndpoint() : base("https://api.themoviedb.org/3/discover/movie")
     {
         Parameters = null; 
     }

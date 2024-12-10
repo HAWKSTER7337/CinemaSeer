@@ -49,12 +49,14 @@ public class Movie : IMedia
     
     public MediaItem GetInfo()
     {
-        var mediaItem = new MediaItem();
-        mediaItem.Title = Title;
-        mediaItem.GenreIds = GenreIds;
-        mediaItem.ReleaseDate = ReleaseDate;
-        mediaItem.OverView = Overview;
-        mediaItem.PosterFileLocation = PosterPath;
+        var mediaItem = new MediaItem
+        {
+            Title = Title,
+            GenreIds = GenreIds,
+            ReleaseDate = ReleaseDate,
+            OverView = Overview,
+            PosterFileLocation = PosterPath
+        };
         return mediaItem;
     }
 

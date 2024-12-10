@@ -19,8 +19,14 @@ public class Program
         var fullList = new List<IMedia>();
         fullList.AddRange(response.Results);
         fullList.AddRange(response2.Results);
-        
-        // Displaying
-        fullList.ForEach(peiceOfMedia => Console.WriteLine(peiceOfMedia.ToBasicDataString()));
+
+        var mediaItems = new List<MediaItem>();
+        fullList.ForEach(item => mediaItems.Add(item.GetInfo()));
+
+        var imageParam = mediaItems[1].PosterFileLocation;
+        var getImageEndpoint = new GetImageEndpoint();
+        getImageEndpoint.Parameters = imageParam;
+        var testingImage = await getImageEndpoint.GetInformationAsync();
+        Console.WriteLine(testingImage.ToString());
     }
 }

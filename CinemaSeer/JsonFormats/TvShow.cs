@@ -45,12 +45,14 @@ public class TvShow : IMedia
     
     public MediaItem GetInfo()
     {
-        var mediaItem = new MediaItem();
-        mediaItem.Title = Name;
-        mediaItem.GenreIds = genreIds;
-        mediaItem.OverView = Overview;
-        mediaItem.ReleaseDate = firstAirDate;
-        mediaItem.PosterFileLocation = PosterPath;
+        var mediaItem = new MediaItem
+        {
+            Title = Name,
+            GenreIds = genreIds,
+            OverView = Overview,
+            ReleaseDate = firstAirDate,
+            PosterFileLocation = PosterPath
+        };
         return mediaItem;
     }
 
