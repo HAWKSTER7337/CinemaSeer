@@ -27,8 +27,8 @@ public abstract class MediaEndpoint<TMedia> where TMedia : class, IMedia
     {
         _baseEndpointUrl = baseEndpointUrl;
     }
-    
-    protected async Task<TResultType> SendRequest<TResultType>(RestClient client, RestRequest request)
+
+    private async Task<TResultType> SendRequest<TResultType>(RestClient client, RestRequest request)
     {
         try
         {
