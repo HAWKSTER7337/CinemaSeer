@@ -19,10 +19,12 @@ public class Program
         var fullList = new List<IMedia>();
         fullList.AddRange(response.Results);
         fullList.AddRange(response2.Results);
-
+    
+        // stroing all of the media into media items
         var mediaItems = new List<MediaItem>();
         fullList.ForEach(item => mediaItems.Add(item.GetInfo()));
 
+        // Storing the test image in a variable
         var imageParam = mediaItems[1].PosterFileLocation;
         var getImageEndpoint = new GetImageEndpoint();
         getImageEndpoint.Parameters = imageParam;

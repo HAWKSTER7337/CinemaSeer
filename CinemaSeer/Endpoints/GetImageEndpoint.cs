@@ -24,9 +24,4 @@ public class GetImageEndpoint : MediaEndpoint<MoviePoster>
             throw new Exception("An error occured while processing an image", e);
         }
     }
-
-    public void SetParameters(string imageURl)
-    {
-        Parameters = imageURl;
-    }
 }

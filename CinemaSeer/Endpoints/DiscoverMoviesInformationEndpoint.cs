@@ -14,7 +14,5 @@ namespace CinemaSeer.Endpoints;
 public class DiscoverMoviesInformationEndpoint : VideoEndpoint<Movie>
 {
     public DiscoverMoviesInformationEndpoint() : base("https://api.themoviedb.org/3/discover/movie")
-    {
-        Parameters = null; 
-    }
+    {}
 }
