@@ -15,13 +15,13 @@ namespace CinemaSeer.Endpoints;
 /// </remarks>
 public abstract class MediaEndpoint<TMedia> where TMedia : class, IMedia
 {
-    protected readonly string ApiAuthorizationKey = GetApiAuthorizationKey();
+    private readonly string ApiAuthorizationKey = GetApiAuthorizationKey();
     
     private readonly string _baseEndpointUrl;
 
     protected string? Parameters;
     
-    protected string FullRequestUrl => Parameters != null ? $"{_baseEndpointUrl}?{Parameters}" : _baseEndpointUrl;
+    private string FullRequestUrl => Parameters != null ? $"{_baseEndpointUrl}?{Parameters}" : _baseEndpointUrl;
 
     protected MediaEndpoint(string baseEndpointUrl)
     {
