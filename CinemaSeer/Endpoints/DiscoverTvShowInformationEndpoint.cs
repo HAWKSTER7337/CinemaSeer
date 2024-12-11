@@ -6,15 +6,11 @@ namespace CinemaSeer.Endpoints;
 /// Represents an endpoint for discovering TV show information from the TheMovieDB API.
 /// </summary>
 /// <remarks>
-/// Inherits the <see cref="MediaEndpoint"/> class to provide a specialized implementation for retrieving TV show data.
+/// Inherits the <see cref="VideoEndpoint{TMedia}"/> class to provide a specialized implementation for retrieving TV show data.
 /// Utilizes RESTful requests to fetch data by making use of a specific API endpoint URL.
 /// </remarks>
-public class DiscoverTvShowInformationEndpoint : MediaEndpoint<TvShow>
+public class DiscoverTvShowInformationEndpoint : VideoEndpoint<TvShow>
 {
-    private const string EndpointString = "https://api.themoviedb.org/3/discover/tv";
-
-    public DiscoverTvShowInformationEndpoint() : base(EndpointString)
-    {
-        Parameters = null;
-    }
+    public DiscoverTvShowInformationEndpoint() : base("https://api.themoviedb.org/3/discover/tv")
+    {}
 }

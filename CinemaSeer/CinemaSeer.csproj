@@ -9,6 +9,7 @@
 
     <ItemGroup>
       <PackageReference Include="RestSharp" Version="112.1.0" />
+      <FrameworkReference Include="Microsoft.WindowsDesktop.App.WPF" />
     </ItemGroup>
 
 </Project>

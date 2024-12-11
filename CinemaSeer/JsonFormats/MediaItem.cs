@@ -6,6 +6,10 @@ public class MediaItem
     public List<int> GenreIds { get; set; }
     public string OverView { get; set; }
     public string ReleaseDate { get; set; }
+    
+    public string PosterFileLocation { get; set; }
+    
+    public Poster Poster { get; set; }
 
     public override string ToString()
     {
