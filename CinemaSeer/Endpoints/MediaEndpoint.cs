@@ -5,6 +5,11 @@ using RestSharp;
 
 namespace CinemaSeer.Endpoints;
 
+/// <summary>
+/// Represents a base class for accessing specific media-related API endpoints.
+/// This class provides a general structure to send requests to an API and process responses.
+/// </summary>
+/// <typeparam name="TMedia">The type of media data returned by the endpoint.</typeparam>
 public abstract class MediaEndpoint<TMedia>
 {
     private readonly string _apiAuthorizationKey = GetApiAuthorizationKey();

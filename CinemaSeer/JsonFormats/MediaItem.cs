@@ -8,6 +8,8 @@ public class MediaItem
     public string ReleaseDate { get; set; }
     
     public string PosterFileLocation { get; set; }
+    
+    public Poster Poster { get; set; }
 
     public override string ToString()
     {

@@ -1,10 +1,10 @@
 namespace CinemaSeer.JsonFormats;
 
-public class MoviePoster
+public class Poster
 {
     public byte[]? RawBytes { get; private set; }
 
-    public MoviePoster(byte[]? rawBytes)
+    public Poster(byte[]? rawBytes)
     {
         RawBytes = rawBytes;
     }
