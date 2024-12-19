@@ -16,7 +16,23 @@ public abstract class MediaEndpoint<TMedia>
     
     protected string BaseEndpointUrl { get; private set; }
 
-    public string? Parameters { get; set; }
+    private string? _parameters = "";
+
+    public string? Parameters
+    {
+        get => _parameters;
+        set
+        {
+            if (string.IsNullOrEmpty(_parameters))
+            {
+                _parameters = value;
+                return;
+            }
+            _parameters += $"&{value}";
+        }
+    }
+    
+    public void ClearParametersString() => _parameters = string.Empty;
     
     protected virtual string FullRequestUrl => Parameters != null ? $"{BaseEndpointUrl}?{Parameters}" : BaseEndpointUrl;
     
@@ -37,7 +53,7 @@ public abstract class MediaEndpoint<TMedia>
         }
     }
     
-    public async Task<TMedia> GetInformationAsync()
+    public virtual async Task<TMedia> GetInformationAsync()
     {
         var options = new RestClientOptions(FullRequestUrl);
         var client = new RestClient(options);
@@ -55,6 +71,5 @@ public abstract class MediaEndpoint<TMedia>
         var apiKey = Environment.GetEnvironmentVariable("MOVIE_API_KEY");
         return apiKey ?? throw new NullReferenceException("API key was not found in environment variables");
     }
-    
     
 }

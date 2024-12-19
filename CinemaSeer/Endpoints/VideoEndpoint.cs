@@ -14,7 +14,7 @@ namespace CinemaSeer.Endpoints;
 /// and processing API responses. Derived classes must implement the <see cref="GetInformationAsync"/>
 /// method to retrieve specific media information based on their context.
 /// </remarks>
-public abstract class VideoEndpoint<TMedia> : MediaEndpoint<MediaResponse<TMedia>> where TMedia : class, IMedia
+public abstract class VideoEndpoint<TMedia> : MediaEndpoint<MediaResponse<TMedia>>, IFilter where TMedia : class, IMedia
 {
 
     protected VideoEndpoint(string baseEndpointUrl) : base(baseEndpointUrl)
@@ -33,4 +33,14 @@ public abstract class VideoEndpoint<TMedia> : MediaEndpoint<MediaResponse<TMedia
             throw new Exception("An error occured while processing media", ex);
         }
     }
+
+    public override async Task<MediaResponse<TMedia>> GetInformationAsync()
+    {
+        PopulateParameters();
+        return await base.GetInformationAsync();
+    }
+
+    public abstract void PopulateParameters();
+
+    public abstract void EmptyParameters();
 }

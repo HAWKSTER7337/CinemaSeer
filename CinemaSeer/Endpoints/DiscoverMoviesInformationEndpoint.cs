@@ -13,6 +13,44 @@ namespace CinemaSeer.Endpoints;
 /// </remarks>
 public class DiscoverMoviesInformationEndpoint : VideoEndpoint<Movie>
 {
+    // Filter Options 
+    public int? Page { get; set; }
+    public int? Year { get; set; }
+    public bool? IncludeAdult { get; set; }
+    public string? SortBy { get; set; }
+    
     public DiscoverMoviesInformationEndpoint() : base("https://api.themoviedb.org/3/discover/movie")
     {}
+
+    public override void PopulateParameters()
+    {
+        ClearParametersString();
+        if (Page != null)
+        {
+            Parameters = $"page={Page}";
+        }
+        
+        if (Year != null)
+        {
+            Parameters = $"year={Year}";
+        }
+
+        if (IncludeAdult != null)
+        {
+            Parameters = $"include_adult={IncludeAdult}";
+        }
+
+        if (SortBy != null)
+        {
+            Parameters = $"sort_by={SortBy}";
+        }
+    }
+
+    public override void EmptyParameters()
+    {
+        ClearParametersString();
+        Page = null;
+        Year = null;
+        IncludeAdult = null;
+    }
 }
