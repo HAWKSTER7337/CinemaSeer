@@ -11,6 +11,44 @@ namespace CinemaSeer.Endpoints;
 /// </remarks>
 public class DiscoverTvShowInformationEndpoint : VideoEndpoint<TvShow>
 {
+    // Filter Options
+    public int? Page { get; set; }
+    public bool? IncludeAdult { get; set; }
+    public string? Region {get; set;}
+    
+    public string? SortBy {get; set;}
+    
     public DiscoverTvShowInformationEndpoint() : base("https://api.themoviedb.org/3/discover/tv")
     {}
+    
+    public override void PopulateParameters()
+    {
+        ClearParametersString();
+        if (Page != null)
+        {
+            Parameters = $"page={Page}";
+        }
+        
+        if (IncludeAdult != null)
+        {
+            Parameters = $"include_adult={IncludeAdult}";
+        }
+        
+        if (Region != null)
+        {
+            Parameters = $"region={Region}";
+        }
+
+        if (SortBy != null)
+        {
+            Parameters = $"sort_by={SortBy}";
+        }
+    }
+
+    public override void EmptyParameters()
+    {
+        Page = null;
+        IncludeAdult = null;
+        Region = null;
+    }
 }
