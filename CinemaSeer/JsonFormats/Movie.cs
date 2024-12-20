@@ -55,7 +55,9 @@ public class Movie : IMedia
             GenreIds = GenreIds,
             ReleaseDate = ReleaseDate,
             OverView = Overview,
-            PosterFileLocation = PosterPath
+            PosterFileLocation = PosterPath,
+            Id = Id,
+            TypeOfMedia = TypeOfMedia.Movie
         };
         return mediaItem;
     }

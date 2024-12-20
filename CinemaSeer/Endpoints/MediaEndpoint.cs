@@ -14,7 +14,7 @@ public abstract class MediaEndpoint<TMedia>
 {
     private readonly string _apiAuthorizationKey = GetApiAuthorizationKey();
     
-    protected string BaseEndpointUrl { get; private set; }
+    protected string BaseEndpointUrl { get; set; }
 
     private string? _parameters = "";
 

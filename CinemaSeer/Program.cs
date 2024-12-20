@@ -8,32 +8,33 @@ public class Program
 {
     public static async Task Main(string[] args)
     {
-        // Getting all discover Movies
-        var movieInformation = new DiscoverMoviesInformationEndpoint();
-        movieInformation.Year = 2024;
-        movieInformation.Page = 100;
-        movieInformation.SortBy = SortByEnum.TitleDesc;
-        var response = await movieInformation.GetInformationAsync();
+        // // Getting all discover Movies
+        // var movieInformation = new DiscoverMoviesInformationEndpoint();
+        // var response = await movieInformation.GetInformationAsync();
+        //
+        // // Getting all discover TV Shows
+        // var tvShowInformation = new DiscoverTvShowInformationEndpoint();
+        // var response2 = await tvShowInformation.GetInformationAsync();
+        //
+        // // Merging lists
+        // var fullList = new List<IMedia>();
+        // fullList.AddRange(response.Results);
+        // fullList.AddRange(response2.Results);
 
-        // Getting all discover TV Shows
-        var tvShowInformation = new DiscoverTvShowInformationEndpoint();
-        tvShowInformation.Page = 1;
-        tvShowInformation.SortBy = SortByEnum.OriginalTitleAsc;
-        var response2 = await tvShowInformation.GetInformationAsync();
-        
-        // Merging lists
+        var movieSearch = new SearchMovieInformation();
+        movieSearch.Query = "Lord of The Rings";
+        var response = await movieSearch.GetInformationAsync();
+
         var fullList = new List<IMedia>();
         fullList.AddRange(response.Results);
-        fullList.AddRange(response2.Results);
-    
-        // storing all the media into media items
-        var mediaItems = new List<MediaItem>();
-        fullList.ForEach(item => mediaItems.Add(item.GetInfo()));
-
-        // Displaying Data that has been collected
-        foreach (var media in mediaItems)
+        
+        // Getting the places to watch the movies
+        var watchProviders = new GetWatchProviders();
+        foreach (var video in fullList)
         {
-            Console.WriteLine(media.ToString());
+            watchProviders.mediaItem = video.GetInfo();
+            var placeToWatch = await watchProviders.GetInformationAsync();
+            Console.WriteLine(placeToWatch.GetUSPlacesToStream());
         }
     }
 }
