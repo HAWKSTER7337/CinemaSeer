@@ -7,4 +7,5 @@ public static class TypeOfMedia
 {
    public const string Movie = "movie";
    public const string TvShow = "tv";
+   public const string Person = "person";
 }

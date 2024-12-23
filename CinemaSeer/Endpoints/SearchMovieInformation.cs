@@ -52,7 +52,6 @@ public class SearchMovieInformation : VideoEndpoint<Movie>
         {
             Parameters = $"year={Year}";
         }
-        
     }
 
     public override void EmptyParameters()

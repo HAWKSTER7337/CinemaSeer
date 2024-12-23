@@ -9,6 +9,8 @@ public class MediaItem
     public string PosterFileLocation { get; set; }
     
     public Poster Poster { get; set; }
+
+    public List<Movie>? KnownFor { get; set; }
     
     public int Id { get; set; }
     
