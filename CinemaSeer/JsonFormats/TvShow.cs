@@ -51,7 +51,9 @@ public class TvShow : IMedia
             GenreIds = genreIds,
             OverView = Overview,
             ReleaseDate = firstAirDate,
-            PosterFileLocation = PosterPath
+            PosterFileLocation = PosterPath,
+            Id = Id,
+            TypeOfMedia = TypeOfMedia.TvShow
         };
         return mediaItem;
     }
